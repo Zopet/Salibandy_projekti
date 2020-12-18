@@ -30,7 +30,7 @@
  *
  * SD Card | ESP32
  *    D2       -
- *    D3       SS
+ *    D3       33
  *    CMD      MOSI
  *    VSS      GND
  *    VDD      3.3V
@@ -120,10 +120,12 @@ if(WiFi.status()!= WL_CONNECTED){
   Use_SD_Card = true;
   connect_wifi();
 }
-
+//Uncomment when MQTT server is up
+/*
 if(MQTT_working == false);{
   connect_MQTT();
-}
+}*/
+//Uncomment when MQTT server is up
   
   //could add VECTOR_ACCELEROMETER, VECTOR_MAGNETOMETER,VECTOR_GRAVITY...
   sensors_event_t orientationData , angVelocityData , linearAccelData, magnetometerData, accelerometerData, gravityData;
@@ -156,8 +158,8 @@ if(MQTT_working == false);{
   Serial.println(mag);
   Serial.print("Lyönnit");
   Serial.println(Lau);
-
-String SH=String((byte)Lau);
+//Uncomment when MQTT server is up
+/*String SH=String((byte)Lau);
 
 if(client.publish(Shots_topic, String(SH).c_str())){
   Serial.println("Number of shots sent");
@@ -167,8 +169,8 @@ else{
   connect_MQTT();
   delay(10);
   client.publish(Shots_topic, String(SH).c_str());
-}
-
+}*/
+//Uncomment when MQTT server is up
   Serial.println("--");
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
@@ -210,8 +212,8 @@ void printEvent(sensors_event_t* event) {
     if (z < 0){
       z = -z;
     }
-
-   String ACCX="Linear acceleration x axel: "+String((double)x);
+//Uncomment when MQTT server is up
+/*   String ACCX="Linear acceleration x axel: "+String((double)x);
    String ACCY="Linear acceleration y axel: "+String((double)y);
    String ACCZ="Linear acceleration z axel: "+String((double)z);   
 
@@ -232,7 +234,8 @@ void printEvent(sensors_event_t* event) {
    client.publish(Linear_acceleration_topic, String(x).c_str());
    client.publish(Linear_acceleration_topic, String(y).c_str());
    client.publish(Linear_acceleration_topic, String(z).c_str());
-  }
+  }*/
+  //Uncomment when MQTT server is up
 }
   else {
     Serial.print("Unk:");
